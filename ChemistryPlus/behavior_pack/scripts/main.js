@@ -47,6 +47,34 @@ const SALTED_FOOD_BY_ID = new Map([
       saturationAmplifier: 1,
       bonusEffect: { name: "regeneration", chance: 0.2, durationTicks: 160, amplifier: 0 }
     }
+  ],
+  [
+    "chemistry_plus:salted_rabbit",
+    {
+      saturationAmplifier: 0,
+      bonusEffect: { name: "jump_boost", chance: 0.15, durationTicks: 300, amplifier: 0 }
+    }
+  ],
+  [
+    "chemistry_plus:salted_cooked_rabbit",
+    {
+      saturationAmplifier: 1,
+      bonusEffect: { name: "jump_boost", chance: 0.2, durationTicks: 400, amplifier: 1 }
+    }
+  ],
+  [
+    "chemistry_plus:salted_mutton",
+    {
+      saturationAmplifier: 0,
+      bonusEffect: { name: "health_boost", chance: 0.15, durationTicks: 300, amplifier: 0 }
+    }
+  ],
+  [
+    "chemistry_plus:salted_cooked_mutton",
+    {
+      saturationAmplifier: 1,
+      bonusEffect: { name: "health_boost", chance: 0.2, durationTicks: 500, amplifier: 0 }
+    }
   ]
 ]);
 const SUGAR_ID = "minecraft:sugar";

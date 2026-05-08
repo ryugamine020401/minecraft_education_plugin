@@ -2,7 +2,7 @@
 
 Minimal Minecraft Education / Bedrock Edition add-on MVP for 1.21.133-era Bedrock/Education builds.
 
-Pack version: `1.0.18`
+Pack version: `1.0.29`
 
 This add-on adds custom chemistry compound items using normal crafting table shapeless recipes. It does not modify the official Minecraft Education Compound Creator.
 
@@ -23,6 +23,10 @@ Crafting table recipes use native Education element items where appropriate. The
 - `chemistry_plus:salted_cooked_porkchop`
 - `chemistry_plus:salted_chicken`
 - `chemistry_plus:salted_cooked_chicken`
+- `chemistry_plus:salted_rabbit`
+- `chemistry_plus:salted_cooked_rabbit`
+- `chemistry_plus:salted_mutton`
+- `chemistry_plus:salted_cooked_mutton`
 - `chemistry_plus:chemistry_reactor`
 
 ## Recipes
@@ -34,7 +38,8 @@ Crafting table recipes use native Education element items where appropriate. The
 - `minecraft:element_11` Sodium + `minecraft:element_17` Chlorine -> `salt`
 - `salt` + `minecraft:potion` Water Bottle -> `salt_water`
 - `salt_water` in a Furnace -> `salt`
-- `salt` + raw/cooked beef, porkchop, or chicken -> salted meat variants
+- `salt` + raw/cooked beef, porkchop, chicken, rabbit, or mutton -> salted meat variants
+- Smelt raw salted meat in a furnace, smoker, campfire, or soul campfire to produce the cooked salted variant
 
 All recipes are set to `AlwaysUnlocked` so they should appear in the crafting table recipe book once the behavior pack is active.
 
@@ -89,8 +94,12 @@ Salted meat variants are crafted in the crafting table with `chemistry_plus:salt
 - `minecraft:cooked_porkchop` -> `chemistry_plus:salted_cooked_porkchop`
 - `minecraft:chicken` -> `chemistry_plus:salted_chicken`
 - `minecraft:cooked_chicken` -> `chemistry_plus:salted_cooked_chicken`
+- `minecraft:rabbit` -> `chemistry_plus:salted_rabbit`
+- `minecraft:cooked_rabbit` -> `chemistry_plus:salted_cooked_rabbit`
+- `minecraft:mutton` -> `chemistry_plus:salted_mutton`
+- `minecraft:cooked_mutton` -> `chemistry_plus:salted_cooked_mutton`
 
-Salted meat restores more hunger than the original food and has a small chance to grant a positive effect when eaten.
+Minecraft Education renders custom item icons as blank when `minecraft:food` is present on these custom items, so salted meat uses Script API item-use handling instead of the native food component. Using a salted meat item consumes one item, applies saturation, and has a small chance to grant a positive effect.
 
 To adjust or add reactor recipes, edit `behavior_pack/scripts/main.js`:
 
@@ -120,9 +129,13 @@ The resource pack registers these texture paths:
 - `resource_pack/textures/items/salted_cooked_porkchop.png`
 - `resource_pack/textures/items/salted_chicken.png`
 - `resource_pack/textures/items/salted_cooked_chicken.png`
+- `resource_pack/textures/items/salted_rabbit.png`
+- `resource_pack/textures/items/salted_cooked_rabbit.png`
+- `resource_pack/textures/items/salted_mutton.png`
+- `resource_pack/textures/items/salted_cooked_mutton.png`
 - `resource_pack/textures/blocks/chemistry_reactor.png`
 
-The active item PNG files are 16x16. The previous 64x64 source images are backed up under `source_textures/items_64_backup/`.
+The salted meat item PNG files are 32x32 pixel-art sprites. The previous 64x64 source images for early chemistry items are backed up under `source_textures/items_64_backup/`.
 
 ## Localization
 

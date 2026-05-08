@@ -79,6 +79,30 @@
     },
     "salted_cooked_chicken": {
       "textures": "textures/items/salted_cooked_chicken"
+    },
+    "chemistry_plus:salted_rabbit": {
+      "textures": "textures/items/salted_rabbit"
+    },
+    "salted_rabbit": {
+      "textures": "textures/items/salted_rabbit"
+    },
+    "chemistry_plus:salted_cooked_rabbit": {
+      "textures": "textures/items/salted_cooked_rabbit"
+    },
+    "salted_cooked_rabbit": {
+      "textures": "textures/items/salted_cooked_rabbit"
+    },
+    "chemistry_plus:salted_mutton": {
+      "textures": "textures/items/salted_mutton"
+    },
+    "salted_mutton": {
+      "textures": "textures/items/salted_mutton"
+    },
+    "chemistry_plus:salted_cooked_mutton": {
+      "textures": "textures/items/salted_cooked_mutton"
+    },
+    "salted_cooked_mutton": {
+      "textures": "textures/items/salted_cooked_mutton"
     }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "chemistry_plus:salted_mutton_furnace"
+    },
+    "tags": ["furnace", "smoker", "campfire", "soul_campfire"],
+    "input": "chemistry_plus:salted_mutton",
+    "output": "chemistry_plus:salted_cooked_mutton"
+  }
+}
