@@ -1,0 +1,23 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "chemistry_plus:lithium_metal"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      {
+        "context": "AlwaysUnlocked"
+      }
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:element_3"
+      }
+    ],
+    "result": {
+      "item": "chemistry_plus:lithium_metal",
+      "count": 1
+    }
+  }
+}

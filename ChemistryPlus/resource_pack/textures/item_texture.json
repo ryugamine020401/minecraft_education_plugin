@@ -44,6 +44,42 @@
     "salt_water": {
       "textures": "textures/items/salt_water"
     },
+    "chemistry_plus:lithium_metal": {
+      "textures": "textures/items/lithium_metal"
+    },
+    "lithium_metal": {
+      "textures": "textures/items/lithium_metal"
+    },
+    "chemistry_plus:sodium_metal": {
+      "textures": "textures/items/sodium_metal"
+    },
+    "sodium_metal": {
+      "textures": "textures/items/sodium_metal"
+    },
+    "chemistry_plus:potassium_metal": {
+      "textures": "textures/items/potassium_metal"
+    },
+    "potassium_metal": {
+      "textures": "textures/items/potassium_metal"
+    },
+    "chemistry_plus:rubidium_metal": {
+      "textures": "textures/items/rubidium_metal"
+    },
+    "rubidium_metal": {
+      "textures": "textures/items/rubidium_metal"
+    },
+    "chemistry_plus:cesium_metal": {
+      "textures": "textures/items/cesium_metal"
+    },
+    "cesium_metal": {
+      "textures": "textures/items/cesium_metal"
+    },
+    "chemistry_plus:francium_metal": {
+      "textures": "textures/items/francium_metal"
+    },
+    "francium_metal": {
+      "textures": "textures/items/francium_metal"
+    },
     "chemistry_plus:salted_beef": {
       "textures": "textures/items/salted_beef"
     },

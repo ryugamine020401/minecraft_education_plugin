@@ -2,7 +2,7 @@
 
 Minimal Minecraft Education / Bedrock Edition add-on MVP for 1.21.133-era Bedrock/Education builds.
 
-Pack version: `1.0.29`
+Pack version: `1.0.31`
 
 This add-on adds custom chemistry compound items using normal crafting table shapeless recipes. It does not modify the official Minecraft Education Compound Creator.
 
@@ -17,6 +17,12 @@ Crafting table recipes use native Education element items where appropriate. The
 - `chemistry_plus:glucose`
 - `chemistry_plus:salt`
 - `chemistry_plus:salt_water`
+- `chemistry_plus:lithium_metal`
+- `chemistry_plus:sodium_metal`
+- `chemistry_plus:potassium_metal`
+- `chemistry_plus:rubidium_metal`
+- `chemistry_plus:cesium_metal`
+- `chemistry_plus:francium_metal`
 - `chemistry_plus:salted_beef`
 - `chemistry_plus:salted_cooked_beef`
 - `chemistry_plus:salted_porkchop`
@@ -40,6 +46,8 @@ Crafting table recipes use native Education element items where appropriate. The
 - `salt_water` in a Furnace -> `salt`
 - `salt` + raw/cooked beef, porkchop, chicken, rabbit, or mutton -> salted meat variants
 - Smelt raw salted meat in a furnace, smoker, campfire, or soul campfire to produce the cooked salted variant
+- Native Education alkali elements can be converted in a crafting table into Chemistry Plus reactive metal items
+- Dropped alkali metal items react with water and explode with different strengths
 
 All recipes are set to `AlwaysUnlocked` so they should appear in the crafting table recipe book once the behavior pack is active.
 
@@ -75,6 +83,17 @@ Water is produced as Minecraft's built-in water bottle item:
 - Hydrogen `minecraft:element_1` x2
 - Oxygen `minecraft:element_8` x1
 - Output: `minecraft:potion` x1
+
+The reactor also supports alkali metal water reactions. Put one Chemistry Plus alkali metal item and one water bottle into the adjacent container, then trigger the reactor. The metal and water bottle are consumed and an explosion occurs. Larger alkali metals explode more strongly:
+
+- `chemistry_plus:lithium_metal`: small reaction
+- `chemistry_plus:sodium_metal`: medium reaction with one secondary burst
+- `chemistry_plus:potassium_metal`: strong reaction with two secondary bursts
+- `chemistry_plus:rubidium_metal`: dangerous reaction with three secondary bursts
+- `chemistry_plus:cesium_metal`: very dangerous reaction with four secondary bursts
+- `chemistry_plus:francium_metal`: extreme reaction with five secondary bursts
+
+The same alkali metal items also react if dropped directly into water.
 
 ## Salt Water and Salted Meat
 

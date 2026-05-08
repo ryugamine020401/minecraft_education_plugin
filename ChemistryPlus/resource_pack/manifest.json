@@ -1,10 +1,10 @@
 {
   "format_version": 2,
   "header": {
-    "name": "GuangFu Chemistry Plus RP 1.0.29",
+    "name": "GuangFu Chemistry Plus RP 1.0.31",
     "description": "Resource pack for Chemistry Plus item names and item textures. for GuangFu Elementary School. ",
     "uuid": "31355db7-32e2-4b59-a9b9-6f370e0fc006",
-    "version": [1, 0, 29],
+    "version": [1, 0, 31],
     "min_engine_version": [1, 21, 100],
     "pack_scope": "world"
   },
@@ -12,7 +12,7 @@
     {
       "type": "resources",
       "uuid": "f11158c0-2f9b-4f7b-8e88-83894b21229a",
-      "version": [1, 0, 29]
+      "version": [1, 0, 31]
     }
   ],
   "metadata": {

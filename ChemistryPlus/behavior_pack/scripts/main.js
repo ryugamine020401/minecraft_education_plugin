@@ -5,6 +5,56 @@ const CARBON_DIOXIDE_ID = "chemistry_plus:carbon_dioxide";
 const CHEMISTRY_REACTOR_ID = "chemistry_plus:chemistry_reactor";
 const GLUCOSE_ID = "chemistry_plus:glucose";
 const SALT_ID = "chemistry_plus:salt";
+const ALKALI_METAL_BY_ID = new Map([
+  [
+    "chemistry_plus:lithium_metal",
+    {
+      radius: 5,
+      burstCount: 0,
+      message: "§a§l鋰§r§f與水反應 : 產生 §a小型爆炸§r§f。"
+    }
+  ],
+  [
+    "chemistry_plus:sodium_metal",
+    {
+      radius: 8,
+      burstCount: 1,
+      message: "§e§l鈉§r§f與水反應 : 產生 §e中型爆炸§r§f！"
+    }
+  ],
+  [
+    "chemistry_plus:potassium_metal",
+    {
+      radius: 12,
+      burstCount: 2,
+      message: "§6§l鉀§r§f與水反應 : 產生 §6§l劇烈爆炸§r§f！"
+    }
+  ],
+  [
+    "chemistry_plus:rubidium_metal",
+    {
+      radius: 16,
+      burstCount: 3,
+      message: "§d§l銣§r§f與水反應 : 產生 §c§l危險爆炸§r§f！"
+    }
+  ],
+  [
+    "chemistry_plus:cesium_metal",
+    {
+      radius: 20,
+      burstCount: 4,
+      message: "§b§l銫§r§f與水反應 : 產生 §4§l極度危險爆炸§r§f！"
+    }
+  ],
+  [
+    "chemistry_plus:francium_metal",
+    {
+      radius: 48,
+      burstCount: 5,
+      message: "§5§l鍅§r§f與水反應 : 產生 §4§l毀滅級危險爆炸§r§f！"
+    }
+  ]
+]);
 const SALTED_FOOD_BY_ID = new Map([
   [
     "chemistry_plus:salted_beef",
@@ -92,6 +142,7 @@ const EXTRA_OXYGEN_TIMEOUT_TICKS = 100;
 const MESSAGE_COOLDOWN_TICKS = 200;
 const REACTOR_TRIGGER_COOLDOWN_TICKS = 10;
 const FOOD_USE_COOLDOWN_TICKS = 32;
+const ALKALI_SCAN_INTERVAL_TICKS = 5;
 const ADJACENT_OFFSETS = [
   { x: 1, y: 0, z: 0 },
   { x: -1, y: 0, z: 0 },
@@ -144,7 +195,8 @@ const lastFoodUseTickByPlayerId = new Map();
 
 const TEXT = {
   chlorineDanger: "\u5371\u96aa\uff1a\u4f60\u8eab\u4e0a\u6709\u6c2f\u6c23\uff0c\u8acb\u52ff\u62ff\u5728\u624b\u4e0a\uff01",
-  reactorSuccess: "\u53cd\u61c9\u5b8c\u6210\uff1a\u5df2\u5408\u6210\u7522\u7269\u3002"
+  reactorSuccess: "\u53cd\u61c9\u5b8c\u6210\uff1a\u5df2\u5408\u6210\u7522\u7269\u3002",
+  alkaliWaterWarning: "\u5371\u96aa\uff1a\u7b2c\u4e00\u65cf\u91d1\u5c6c\u9047\u6c34\u53cd\u61c9\uff01"
 };
 
 function sendCooldownMessage(player, key, message, cooldownTicks = MESSAGE_COOLDOWN_TICKS) {
@@ -376,6 +428,119 @@ function removeItemsFromContainer(container, typeId, amount) {
   return amount - remaining;
 }
 
+function isWaterBlock(block) {
+  return block?.typeId === "minecraft:water" || block?.typeId === "minecraft:flowing_water";
+}
+
+function isLocationInWater(dimension, location) {
+  try {
+    const blockLocation = {
+      x: Math.floor(location.x),
+      y: Math.floor(location.y),
+      z: Math.floor(location.z)
+    };
+    return isWaterBlock(dimension.getBlock(blockLocation));
+  } catch {
+    return false;
+  }
+}
+
+function getDroppedItemStack(entity) {
+  try {
+    return entity.getComponent("minecraft:item")?.itemStack;
+  } catch {
+    return undefined;
+  }
+}
+
+function triggerAlkaliExplosion(dimension, location, reaction) {
+  try {
+    dimension.spawnParticle?.("minecraft:basic_flame_particle", location);
+  } catch {
+    // Particle support varies by edition.
+  }
+
+  try {
+    dimension.createExplosion(location, reaction.radius, {
+      breaksBlocks: true,
+      causesFire: reaction.radius >= 6
+    });
+
+    const offsets = [
+      { x: 2, y: 0, z: 0 },
+      { x: -2, y: 0, z: 0 },
+      { x: 0, y: 0, z: 2 },
+      { x: 0, y: 0, z: -2 },
+      { x: 1.5, y: 0, z: 1.5 }
+    ];
+    const burstCount = Math.min(reaction.burstCount ?? 0, offsets.length);
+    for (let i = 0; i < burstCount; i += 1) {
+      const offset = offsets[i];
+      dimension.createExplosion(
+        {
+          x: location.x + offset.x,
+          y: location.y,
+          z: location.z + offset.z
+        },
+        Math.max(2, reaction.radius * 0.45),
+        {
+          breaksBlocks: true,
+          causesFire: reaction.radius >= 6
+        }
+      );
+    }
+  } catch {
+    try {
+      dimension.runCommand(`summon tnt ${location.x} ${location.y} ${location.z}`);
+    } catch {
+      // If explosion APIs are blocked, fail silently rather than breaking the script loop.
+    }
+  }
+}
+
+function reactAlkaliMetalWithWater(dimension, location, reaction, player) {
+  if (player) {
+    sendCooldownMessage(player, "alkali_water", reaction.message ?? TEXT.alkaliWaterWarning, 20);
+  }
+  triggerAlkaliExplosion(dimension, location, reaction);
+}
+
+function checkDroppedAlkaliMetalsInWater() {
+  for (const dimensionId of ["overworld", "nether", "the_end"]) {
+    let dimension;
+    try {
+      dimension = world.getDimension(dimensionId);
+    } catch {
+      continue;
+    }
+
+    let itemEntities;
+    try {
+      itemEntities = dimension.getEntities({ type: "minecraft:item" });
+    } catch {
+      continue;
+    }
+
+    for (const entity of itemEntities) {
+      const itemStack = getDroppedItemStack(entity);
+      const reaction = ALKALI_METAL_BY_ID.get(itemStack?.typeId);
+      if (!reaction) {
+        continue;
+      }
+
+      if (entity.isInWater || isLocationInWater(dimension, entity.location)) {
+        const location = { ...entity.location };
+        try {
+          entity.remove();
+        } catch {
+          // The explosion still happens even if the entity cannot be removed.
+        }
+        reactAlkaliMetalWithWater(dimension, location, reaction);
+      }
+    }
+  }
+}
+
 function hasRoomForItem(container, typeId) {
   let maxAmount = 64;
   try {
@@ -486,7 +651,30 @@ function findMatchingReactorRecipe(container) {
   return REACTOR_RECIPES.find((recipe) => containerExactlyMatchesRecipe(container, recipe.ingredients));
 }
 
+function findAlkaliWaterReaction(container) {
+  const waterBottleCount = countItems(container, WATER_BOTTLE_ID);
+  if (waterBottleCount <= 0) {
+    return undefined;
+  }
+
+  for (const [typeId, reaction] of ALKALI_METAL_BY_ID) {
+    if (countItems(container, typeId) > 0) {
+      return { typeId, reaction };
+    }
+  }
+
+  return undefined;
+}
+
 function craftFromReactorContainer(container, player) {
+  const alkaliReaction = findAlkaliWaterReaction(container);
+  if (alkaliReaction) {
+    removeItemsFromContainer(container, alkaliReaction.typeId, 1);
+    removeItemsFromContainer(container, WATER_BOTTLE_ID, 1);
+    reactAlkaliMetalWithWater(player.dimension, player.location, alkaliReaction.reaction, player);
+    return;
+  }
+
   const recipe = findMatchingReactorRecipe(container);
   if (!recipe) {
     return;
@@ -656,3 +844,5 @@ system.runInterval(() => {
     }
   }
 }, CHECK_INTERVAL_TICKS);
+
+system.runInterval(checkDroppedAlkaliMetalsInWater, ALKALI_SCAN_INTERVAL_TICKS);
