@@ -1,0 +1,18 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:item": {
+    "description": {
+      "identifier": "chemistry_plus:hydrochloric_acid",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:max_stack_size": 64,
+      "minecraft:icon": "chemistry_plus:hydrochloric_acid",
+      "minecraft:display_name": {
+        "value": "item.chemistry_plus:hydrochloric_acid.name"
+      }
+    }
+  }
+}

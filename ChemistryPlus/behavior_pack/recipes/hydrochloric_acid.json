@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "chemistry_plus:hydrochloric_acid"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      {
+        "context": "AlwaysUnlocked"
+      }
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:element_1"
+      },
+      {
+        "item": "minecraft:element_17"
+      }
+    ],
+    "result": {
+      "item": "chemistry_plus:hydrochloric_acid",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "chemistry_plus:salted_porkchop_furnace"
+    },
+    "tags": ["furnace", "smoker", "campfire", "soul_campfire"],
+    "input": "chemistry_plus:salted_porkchop",
+    "output": "chemistry_plus:salted_cooked_porkchop"
+  }
+}

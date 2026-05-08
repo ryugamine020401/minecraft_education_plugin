@@ -1,0 +1,84 @@
+{
+  "resource_pack_name": "GuangFu Chemistry Plus RP",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "chemistry_plus:carbon_dioxide": {
+      "textures": "textures/items/carbon_dioxide"
+    },
+    "carbon_dioxide": {
+      "textures": "textures/items/carbon_dioxide"
+    },
+    "chemistry_plus:hydrochloric_acid": {
+      "textures": "textures/items/hydrochloric_acid"
+    },
+    "hydrochloric_acid": {
+      "textures": "textures/items/hydrochloric_acid"
+    },
+    "chemistry_plus:sodium_hypochlorite": {
+      "textures": "textures/items/sodium_hypochlorite"
+    },
+    "sodium_hypochlorite": {
+      "textures": "textures/items/sodium_hypochlorite"
+    },
+    "chemistry_plus:chlorine_gas": {
+      "textures": "textures/items/chlorine_gas"
+    },
+    "chlorine_gas": {
+      "textures": "textures/items/chlorine_gas"
+    },
+    "chemistry_plus:glucose": {
+      "textures": "textures/items/glucose"
+    },
+    "glucose": {
+      "textures": "textures/items/glucose"
+    },
+    "chemistry_plus:salt": {
+      "textures": "textures/items/salt"
+    },
+    "salt": {
+      "textures": "textures/items/salt"
+    },
+    "chemistry_plus:salt_water": {
+      "textures": "textures/items/salt_water"
+    },
+    "salt_water": {
+      "textures": "textures/items/salt_water"
+    },
+    "chemistry_plus:salted_beef": {
+      "textures": "textures/items/salted_beef"
+    },
+    "salted_beef": {
+      "textures": "textures/items/salted_beef"
+    },
+    "chemistry_plus:salted_cooked_beef": {
+      "textures": "textures/items/salted_cooked_beef"
+    },
+    "salted_cooked_beef": {
+      "textures": "textures/items/salted_cooked_beef"
+    },
+    "chemistry_plus:salted_porkchop": {
+      "textures": "textures/items/salted_porkchop"
+    },
+    "salted_porkchop": {
+      "textures": "textures/items/salted_porkchop"
+    },
+    "chemistry_plus:salted_cooked_porkchop": {
+      "textures": "textures/items/salted_cooked_porkchop"
+    },
+    "salted_cooked_porkchop": {
+      "textures": "textures/items/salted_cooked_porkchop"
+    },
+    "chemistry_plus:salted_chicken": {
+      "textures": "textures/items/salted_chicken"
+    },
+    "salted_chicken": {
+      "textures": "textures/items/salted_chicken"
+    },
+    "chemistry_plus:salted_cooked_chicken": {
+      "textures": "textures/items/salted_cooked_chicken"
+    },
+    "salted_cooked_chicken": {
+      "textures": "textures/items/salted_cooked_chicken"
+    }
+  }
+}

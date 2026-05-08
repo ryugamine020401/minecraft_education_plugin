@@ -1,0 +1,38 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "GuangFu Chemistry Plus BP 1.0.28",
+    "description": "Behavior pack for Chemistry Plus: simple chemistry crafting items and recipes.",
+    "uuid": "43ee6266-4533-4c3b-bce3-164c53a2368d",
+    "version": [1, 0, 28],
+    "min_engine_version": [1, 21, 100]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "bcdb2ae1-5f53-490a-8b8a-f508f7c15405",
+      "version": [1, 0, 28]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "905045fb-96d0-4092-b3e2-6a180463b60a",
+      "version": [1, 0, 28],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "31355db7-32e2-4b59-a9b9-6f370e0fc006",
+      "version": [1, 0, 28]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.1.0"
+    }
+  ],
+  "metadata": {
+    "authors": ["Hinata0401"],
+    "product_type": "addon"
+  }
+}

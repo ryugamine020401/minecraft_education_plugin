@@ -1,0 +1,26 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "chemistry_plus:salted_cooked_porkchop"
+    },
+    "tags": ["crafting_table"],
+    "unlock": [
+      {
+        "context": "AlwaysUnlocked"
+      }
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:cooked_porkchop"
+      },
+      {
+        "item": "chemistry_plus:salt"
+      }
+    ],
+    "result": {
+      "item": "chemistry_plus:salted_cooked_porkchop",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,15 @@
+*.mcaddon
+*.mcpack
+*.zip
+
+# Root scratch / extracted leftovers
+/items/
+/texts/
+/textures/
+/pack_icon.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

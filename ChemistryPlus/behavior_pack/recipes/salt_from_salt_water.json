@@ -1,0 +1,11 @@
+{
+  "format_version": "1.21.100",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "chemistry_plus:salt_from_salt_water"
+    },
+    "tags": ["furnace"],
+    "input": "chemistry_plus:salt_water",
+    "output": "chemistry_plus:salt"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "format_version": "1.21.100",
+  "chemistry_plus:chemistry_reactor": {
+    "sound": "stone",
+    "textures": "chemistry_plus_reactor",
+    "carried_textures": "chemistry_plus_reactor"
+  }
+}
